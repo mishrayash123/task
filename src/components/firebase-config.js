@@ -4,13 +4,13 @@ import {getAuth} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCUhMFYZ30c6D7kzNbwO7atRc-p-iEziQY",
-  authDomain: "recipe-app-160a3.firebaseapp.com",
-  projectId: "recipe-app-160a3",
-  storageBucket: "recipe-app-160a3.appspot.com",
-  messagingSenderId: "119822664767",
-  appId: "1:119822664767:web:920035e9a8e2242675248a",
-  measurementId: "G-MGFRBLW4W2"
+  apiKey: "AIzaSyC3XcuQcKY1uFwqPxYsr7Fl1kJrBFVI2Vo",
+  authDomain: "profile-c2f87.firebaseapp.com",
+  projectId: "profile-c2f87",
+  storageBucket: "profile-c2f87.appspot.com",
+  messagingSenderId: "1029209016746",
+  appId: "1:1029209016746:web:b7e093c25e4b8f488203d3",
+  measurementId: "G-NNYJ72DDLJ"
 };
 
 

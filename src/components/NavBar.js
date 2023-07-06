@@ -2,43 +2,29 @@ import {Transition} from "@headlessui/react";
 import React, {useEffect, useState, useRef} from "react";
 import {Link} from "react-router-dom";
 import {signOut, onAuthStateChanged} from "firebase/auth";
-import { auth,db } from "./firebase-config";
-import { collection } from "firebase/firestore";
-import {getDocs, } from "firebase/firestore";
+import { auth} from "./firebase-config";
 import ThemeSwitchButton from "./themeSwitchButton";
 
 
 
 
-const NavBar =({setfav}) => {
+const NavBar =() => {
   const [isOpen, setIsOpen] = useState(false);
   const [ya, setya] = useState(false);
   const [st, setst] = useState("");
-  const [uid, setuid] = useState("gfhjvjkbjhbh");
   const divRef = useRef()
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
           setya(true);
-          setuid(user.uid);
             setst(user.email[0]);
             
         } else {
           setya(false);
-          setuid("");
         }
     });
-    fidata();
 }, [auth.currentUser]);
-
-const fidata = async () => {
-  const colRef = collection(db,uid);
-  const snapshots = await getDocs(colRef);
-  const docs = snapshots.docs.map(doc => doc.data());
-  setfav(docs);
-  
-}
 
 const logout = async () => {
     signOut(auth).then(() => {
@@ -55,13 +41,8 @@ const logout = async () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                {/* <img
-                  className="h-14 w-14"
-                  src={img1}
-                  alt="Workflow"
-                /> */}
               </div>
-                <a className="text-white underline decoration-wavy decoration-4 italic text-2xl mb-2" href="/">Freci</a>
+                <a className="text-white underline decoration-wavy decoration-4 italic text-2xl mb-2" href="/">Your Notes</a>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                 <Link to="/" className=" hover:bg-blue-900 dark:hover:bg-fuchsia-900 text-white  px-3 py-2 rounded-md text-sm font-medium">
@@ -73,9 +54,6 @@ const logout = async () => {
             <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-2">
                 <ThemeSwitchButton/>
-                                <Link to="/fav" className=" hover:bg-blue-900 dark:hover:bg-fuchsia-900 text-white px-3 py-2 rounded-md text-sm font-medium" onClick={fidata}>
-                                Favourites
-                                </Link>
                                 <> {
                                     ya ? (
 
@@ -151,10 +129,6 @@ const logout = async () => {
               <div ref={divRef} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link to="/" className="hover:bg-blue-900 dark:hover:bg-fuchsia-900 text-white block px-3 py-2 rounded-md text-base font-medium">
                                     Home
-                                </Link>
-                                
-                                <Link to="/fav" className="hover:bg-blue-900 dark:hover:bg-fuchsia-900 text-white block px-3 py-2 rounded-md text-base font-medium">
-                                Favourites
                                 </Link>
                                 
                                 <> {
